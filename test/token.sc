@@ -14,6 +14,10 @@ function initialize() {
 	this.balances = {};
 }
 
+// contract public properties
+
+public('balances');
+
 // contract public methods
 
 public('transfer', transfer);
