@@ -18,6 +18,15 @@ exports['create instance'] = function (test) {
 	test.equal(instance.increment(41), 42);
 };
 
+exports['sealed instance'] = function (test) {
+	var compiled = smarc.compile('public("increment", function (x) { return x + 1; })');
+	var instance = compiled.instance();
+	
+	test.ok(instance);
+	instance.name = "Adam";
+	test.equal(instance.name, null);
+};
+
 exports['create instance calling initialize'] = function (test) {
 	var compiled = smarc.compile('public("initialize", function (msg) { this.message = msg; })');
 	var instance = compiled.instance("hello");
