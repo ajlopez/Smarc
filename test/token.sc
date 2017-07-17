@@ -14,6 +14,8 @@ function initialize() {
 	this.balances = {};
 }
 
+// contract public methods
+
 method('transfer', transfer);
 method('getBalance', getBalance);
 method('initialize', initialize);
