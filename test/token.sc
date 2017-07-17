@@ -16,7 +16,7 @@ function initialize() {
 
 // contract public methods
 
-method('transfer', transfer);
-method('getBalance', getBalance);
-method('initialize', initialize);
+public('transfer', transfer);
+public('getBalance', getBalance);
+public('initialize', initialize);
 
