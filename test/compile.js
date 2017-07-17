@@ -28,7 +28,7 @@ exports['sealed instance'] = function (test) {
 };
 
 exports['create instance calling initialize'] = function (test) {
-	var compiled = smarc.compile('public("initialize", function (msg) { this.message = msg; })');
+	var compiled = smarc.compile('public("initialize", function (msg) { this.message = msg; }); public("message");');
 	var instance = compiled.instance("hello");
 	
 	test.ok(instance);
