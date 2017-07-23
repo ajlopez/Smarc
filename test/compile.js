@@ -27,8 +27,8 @@ exports['sealed instance'] = function (test) {
 	test.equal(instance.name, null);
 };
 
-exports['create instance calling initialize'] = function (test) {
-	var compiled = smarc.compile('public("initialize", function (msg) { this.message = msg; }); public("message");');
+exports['create instance calling constructor'] = function (test) {
+	var compiled = smarc.compile('constructor(function (msg) { this.message = msg; }); public("message");');
 	var instance = compiled.instance(["hello"]);
 	
 	test.ok(instance);
@@ -37,7 +37,7 @@ exports['create instance calling initialize'] = function (test) {
 };
 
 exports['accessing storage'] = function (test) {
-	var compiled = smarc.compile('public("initialize", function (msg) { this.message = msg; }); public("message");');
+	var compiled = smarc.compile('constructor(function (msg) { this.message = msg; }); public("message");');
 	var storage = {};
 	var instance = compiled.instance(["hello"], storage);
 	

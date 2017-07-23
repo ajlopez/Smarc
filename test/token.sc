@@ -22,5 +22,5 @@ public('balances');
 
 public('transfer', transfer);
 public('getBalance', getBalance);
-public('initialize', initialize);
+constructor(initialize);
 
