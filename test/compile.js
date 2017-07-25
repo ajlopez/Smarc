@@ -25,6 +25,16 @@ exports['create instance'] = function (test) {
 	test.equal(instance.increment(41), 42);
 };
 
+exports['create instance using contract with definition'] = function (test) {
+	var compiled = smarc.compile('function increment(x) { return x + 1; }; contract({ methods: { public: { increment: increment }}});');
+	var instance = compiled.instance();
+	
+	test.ok(instance);
+	test.equal(typeof instance, 'object');
+	test.equal(instance.increment(1), 2);
+	test.equal(instance.increment(41), 42);
+};
+
 exports['sealed instance'] = function (test) {
 	var compiled = smarc.compile('public("increment", function (x) { return x + 1; })');
 	var instance = compiled.instance();
