@@ -53,6 +53,15 @@ exports['create instance calling constructor'] = function (test) {
 	test.equal(instance.message, "hello");
 };
 
+exports['create instance calling constructor in contract definition'] = function (test) {
+	var compiled = smarc.compile('function initialize(msg) { this.message = msg; }; contract({ constructor: initialize, properties: { public: [ "message" ]}});');
+	var instance = compiled.instance(["hello"]);
+	
+	test.ok(instance);
+	test.equal(typeof instance, 'object');
+	test.equal(instance.message, "hello");
+};
+
 exports['accessing storage'] = function (test) {
 	var compiled = smarc.compile('constructor(function (msg) { this.message = msg; }); public("message");');
 	var storage = {};
