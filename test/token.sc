@@ -14,13 +14,22 @@ function initialize() {
 	this.balances = {};
 }
 
-// contract public properties
+// contract definition
 
-public('balances');
-
-// contract public methods
-
-public('transfer', transfer);
-public('getBalance', getBalance);
-constructor(initialize);
+contract({
+	constructor: initialize,
+	
+	properties: {
+		public: [
+			"balances"
+		]
+	},
+	
+	methods: {
+		public: {
+			transfer: transfer,
+			getBalance: getBalance
+		}
+	}
+});
 
