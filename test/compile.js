@@ -47,4 +47,16 @@ exports['accessing storage'] = function (test) {
 	test.equal(storage.message, "hello");
 };
 
+exports['accessing storage private property'] = function (test) {
+	var compiled = smarc.compile('function initialize(msg) { this.message = msg; }; contract({ constructor: initialize, properties: { private: [ "message" ]}});');
+	var storage = {};
+	var instance = compiled.instance(["hello"], storage);
+	
+	test.ok(instance);
+	test.equal(typeof instance, 'object');
+	test.equal(instance.message, null);
+	test.equal(storage.message, "hello");
+};
+
+
 
