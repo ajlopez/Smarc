@@ -27,6 +27,17 @@ exports['sealed instance'] = function (test) {
 	test.equal(instance.name, null);
 };
 
+exports['private method'] = function (test) {
+	var compiled = smarc.compile('function aux(x) { return x + 1; }; function increment(x) { return this.aux(x); }; contract({ methods: { public: { increment: increment }, private: { aux: aux }}});');
+	var instance = compiled.instance();
+	
+	test.ok(instance);
+	test.equal(typeof instance, 'object');
+	test.equal(instance.increment(1), 2);
+	test.equal(instance.increment(41), 42);
+	test.equal(instance.aux, null);
+};
+
 exports['create instance calling constructor in contract definition'] = function (test) {
 	var compiled = smarc.compile('function initialize(msg) { this.message = msg; }; contract({ constructor: initialize, properties: { public: [ "message" ]}});');
 	var instance = compiled.instance(["hello"]);
